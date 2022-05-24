@@ -1,0 +1,166 @@
+.title{
+    position: absolute;
+    top: 2%;
+    left: 8%;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+.main-part{
+    padding-top: 1px;
+
+    .container{
+        width: 80%;
+        margin: 0 auto;
+        height: auto;
+    }
+}
+
+.navigation {
+    width:100%;
+    height:55px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.navigation-element {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.logo {
+    margin-right: 10%;
+    vertical-align: middle;
+}
+
+.search {
+    vertical-align: middle;
+    padding: 0 1em;
+}
+
+.icons {
+    margin-left: 10%;
+    vertical-align: middle;
+}
+
+.icon {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.label {
+    vertical-align: middle;
+}
+
+.wrapper {
+    height: 100%;
+    .header{
+        max-width: 60vh;
+        width: 100%;
+        height: auto;
+        margin: 5% auto;
+    }
+
+    .top{
+        background: #416ff0;
+    }
+
+    .logo{
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 10%;
+
+        h3{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 26px;
+            margin-bottom: 0;
+        }
+    }
+
+    
+    .form {
+        text-align: left;
+
+        .form-par{
+
+            margin: .5em 0;
+            padding: .5em;
+
+            input{
+                width: 100%;
+                background: #fafafa;
+                border: 1px solid #efefef;
+                font-size: 15px;
+                border-radius: 3px;
+                color: #262626;
+                padding: 5%;
+            }
+        }
+
+        .submit-btn {
+            width: 100%;
+            color: #f9f9f9;
+            border: none;
+            border-radius: 2px;
+            float:center;
+            cursor:pointer;
+            padding: 8px;
+
+            button{
+                background: #416ff0;
+            }
+        }
+    }
+}
+
+.wrapper .header .top,
+.wrapper .signup{
+	background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 1px;
+    padding: 10% 10% 10% 10%;
+}
+
+.wrapper .header .or{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 15px;
+	margin: 15px 0 20px;
+}
+
+.wrapper .header .or .line{
+	width: 105px;
+	height: 2px;
+	background: #efefef
+}
+
+.wrapper .signup{
+	margin: 10px 0 20px;
+	padding: 25px 40px;
+	text-align: center;
+	color: #262626;
+}
+
+.wrapper .signup a{
+	color: #3897f0;
+}
+
+form{
+    margin-top: 3%;
+    text-align: center;
+}
+
+.mat-form-field{
+    width: 50%;
+    padding: 1em 3em;
+}
+
+.submit_b{
+    width: 20%;
+    padding: .5em 1em;
+    margin-top: 1em;
+    background-color: rgb(229, 241, 241);
+}

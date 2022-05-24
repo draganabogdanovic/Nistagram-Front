@@ -1,0 +1,147 @@
+.navigation {
+  width: 100%;
+  height: 55px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 300px;
+  padding: 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+
+  right: 100px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-family: "Roboto Medium", sans-serif;
+  color: #000;
+}
+
+.container {
+  border-radius: 2px;
+  background-color: #f2f2f2;
+  padding: 40px 480px 100px;
+  width: 50%;
+}
+
+.category {
+  display: flex;
+  width: 15%;
+  margin: 20px 2px;
+  margin-top: 0px;
+  justify-content: space-between;
+}
+.category label {
+  display: flex;
+}
+
+.category .dot {
+  height: 18px;
+  width: 18px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  margin-right: 20px;
+  border: 5px solid transparent;
+}
+
+#dot-1:checked ~ .category label .one,
+#dot-2:checked ~ .category label .two {
+  border-color: #d9d9d9;
+  background: #9b59b6;
+}
+form input[type="radio"] {
+  display: none;
+}
+
+.submit-btn {
+  width: 50%;
+  color: #f9f9f9;
+  border: none;
+  border-radius: 2px;
+  float: right;
+  margin: 100px 350px;
+  margin-top: 0px;
+  cursor: pointer;
+  padding: 8px;
+
+  button {
+    background: #416ff0;
+  }
+}
+
+.navigation-element {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.logo {
+  margin-right: 10%;
+  vertical-align: middle;
+}
+
+.search {
+  vertical-align: middle;
+}
+
+.icons {
+  margin-left: 10%;
+  vertical-align: middle;
+}
+
+.icon {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.label {
+  vertical-align: middle;
+}
+
+.profile-picture-container {
+  display: inline-block;
+  height: 150px;
+  width: 150px;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+  -webkit-user-drag: none;
+}
+
+.overlay {
+  transition: 0.5s ease;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  white-space: nowrap;
+}
+.profile-picture-container:hover .profile-picture {
+  filter: brightness(60%);
+}
+
+.profile-picture-container:hover .overlay {
+  opacity: 1;
+}
+
+.icon {
+  position: relative !important;
+  font-size: 20pt;
+  left: 80px;
+  bottom: 80px;
+  color: white;
+}

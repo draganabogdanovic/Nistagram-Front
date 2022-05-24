@@ -1,0 +1,17 @@
+<div class="dialog">
+    <mat-form-field>
+        <mat-label>Collection name</mat-label>
+        <input matInput [(ngModel)]="collectionName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Existing collections</mat-label>
+        <mat-select [(ngModel)]="collectionName">
+            <mat-option *ngFor="let name of collectionNames" [value]="name">
+                {{name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+        <button mat-raised-button (click)="save()">Save post</button>
+    </div>
+</div>

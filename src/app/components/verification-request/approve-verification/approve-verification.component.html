@@ -1,0 +1,25 @@
+<div class="verification">
+    <table class="table table-striped"  matTableExporter #exporter="matTableExporter">
+        <thead>
+            <tr>
+                <th id="Name" class="row">Name</th>
+                <th id="Surname" class="row">Surname</th>
+                <th id="Category" class="row">Category</th>
+                <th id="Photo" class="row">Photo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr>
+               <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>
+                    <button type="button" mat-raised-button (click)="approveVerification()">Approve verification</button>   
+                    <button type="button" mat-raised-button (click)="declineVerification()">Decline verification</button>   
+                 </th>
+            </tr>
+        </tbody>
+    </table>
+</div>

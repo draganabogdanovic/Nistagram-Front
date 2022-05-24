@@ -1,0 +1,183 @@
+:host {
+    background: #fafafa;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+.content {
+    width: 50%;
+    display: inline-block;
+}
+
+.mat-tab-labels {
+    text-align: center;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image {
+    width: 250px !important;
+    height: 250px !important;
+    margin: 25px 25px 25px 25px;
+    transition: 0.5s ease;
+    backface-visibility: hidden;
+    -webkit-user-drag: none;
+}
+
+.multiple-images-icon {
+    color: white;
+    position: absolute;
+    right: 50px;
+    top: 40px;
+}
+
+.overlay {
+    transition: 0.5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.image-container:hover .image {
+    filter: brightness(60%);
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+.icon {
+    font-size: 20pt;
+    color: white;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.value {
+    display: inline-block;
+    color: white;
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.user-profile-info {
+    position: relative;
+    right: 100px;
+}
+
+.profile-picture-container {
+    display: inline-block;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin-top: 25px;
+}
+
+.info {
+    display: inline-block;
+    margin-left: 100px;
+    font-size: 12pt;
+    text-align: left;
+}
+
+.username {
+    font-size: 20pt !important;
+    font-weight: 100;
+}
+
+.count {
+    display: inline-block;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.label {
+    margin-right: 40px;
+    font-weight: 100;
+}
+
+.info > * {
+    margin-top: 20px;
+}
+
+.name {
+    font-weight: 500;
+}
+
+.text > * {
+    margin-top: 5px;
+}
+
+mat-form-field {
+    width: 50%;
+}
+
+.has-stories {
+    border-style: solid;
+    border: double 4px transparent;
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, #f00,#3020ff);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    cursor: pointer !important;
+}
+
+.close-friends-checkbox-container {
+    margin: 10px;
+}
+
+.tabs {
+    width: 100%;
+}
+
+.highlights-container {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+}
+
+.highlights {
+    text-align: center;
+    position: relative;
+    display: flex;
+    width: 50%;
+    max-width: 50%;
+    text-align: center;
+    overflow-y: visible;
+}
+
+.highlight-picture {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin-top: 25px;
+    margin-right: 20px;
+}
+
+.highlight-name {
+    font-weight: 600;
+}
+
+.collection-name {
+    text-align: left;
+    font-weight: 600;
+    float: left;
+    font-size: 20pt;
+    overflow: hidden;
+    padding: 20px 0 20px 40px;
+}

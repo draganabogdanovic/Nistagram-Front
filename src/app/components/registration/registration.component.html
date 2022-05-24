@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="top" style="background-color: rgb(229, 241, 241);">
+            <div class="logo">
+                <h3>Registration</h3>
+            </div>
+            <div class="form">
+                <form (submit)="onSubmit()">
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Username" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="password" placeholder="Password" [(ngModel)]="user.password"
+                        [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <!-- <div class="form-par">
+                        <input matInput type="password" placeholder="Confirm password" [(ngModel)]="user.confirmpassword"
+                        [ngModelOptions]="{standalone: true}" required>
+                    </div> -->
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Name" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Date of birth" [(ngModel)]="user.dob" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="number" placeholder="Gender" [(ngModel)]="user.gender" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Phone number" [(ngModel)]="user.phone_number" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Web site" [(ngModel)]="user.website" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Biography" [(ngModel)]="user.bio" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="submit-btn">
+                        <button mat-stroked-button color="primary" class="submit-btn" type="submit">
+                            Sing up</button>
+                    </div>
+                </form>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="login" style="background-color: rgb(229, 241, 241);">
+            <p> Already have an account <a href="#">Login</a></p>
+        </div>
+    </div>
+</div>

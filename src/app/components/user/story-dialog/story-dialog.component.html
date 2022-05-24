@@ -1,0 +1,37 @@
+<div class="story-dialog-container">
+    <div class="left-container" *ngIf="!data.multiple">
+        <div class="slide-progress-main">
+            <div class="slide-progress" id="progress-bar"></div>
+        </div>
+        <owl-carousel class="carousel" [options]="options" style="width: 100% !important;" class="owl-theme carousel">
+            <div *ngFor="let content of data.story.content">
+                <div *ngIf="data.story.close_friends_only" class="close-friends-icon-container">
+                    <i class="fas fa-star close-friends-icon"></i>
+                </div>
+                <div class="report" (click)="report(data.story.id)">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <img *ngIf="!isContentVideo(content)" class="content" src="http://localhost:8080/api/media{{content}}">
+                <video *ngIf="isContentVideo(content)" class="content" src="http://localhost:8080/api/media{{content}}"></video>
+            </div>
+        </owl-carousel>
+    </div>
+    <div class="left-container" *ngIf="data.multiple">
+        <div class="slide-progress-main">
+            <div class="slide-progress" id="progress-bar"></div>
+        </div>
+        <owl-carousel *ngIf="transformedData" class="carousel" [options]="options" style="width: 100% !important;"
+            class="owl-theme carousel">
+            <div *ngFor="let story of transformedData.stories">
+                <div *ngIf="story.close_friends_only" class="close-friends-icon-container">
+                    <i class="fas fa-star close-friends-icon"></i>
+                </div>
+                <div class="report" (click)="report(story.id)">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <img *ngIf="!isContentVideo(story.content)" class="content" src="http://localhost:8080/api/media{{story.content}}">
+                <video *ngIf="isContentVideo(story.content)" class="content" src="http://localhost:8080/api/media{{story.content}}"></video>
+            </div>
+        </owl-carousel>
+    </div>
+</div>

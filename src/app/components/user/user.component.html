@@ -1,0 +1,46 @@
+<nav class="navigation">
+
+    <img class="logo" src="http://localhost:8080/api/media/storage/static/logo.png">
+    <mat-form-field class="search">
+        <mat-label class="label">Search</mat-label>
+        <input matInput type="text">
+    </mat-form-field>
+    <span class="icons">
+        <button mat-icon-button routerLink="#">
+            <span class="material-icons icon">home</span>
+        </button>
+        <button mat-icon-button routerLink="#">
+            <span class="material-icons icon">message</span>
+        </button>
+        <button mat-icon-button routerLink="#" [matMenuTriggerFor]="account">
+            <span class="material-icons icon">face</span>
+        </button>
+        <mat-menu #account="matMenu">
+            <div mat-menu-item routerLink="/profile">
+                <span class="material-icons icon">account_circle</span>
+                <mat-label class="label">Profile</mat-label>
+            </div>
+            <div mat-menu-item routerLink="#">
+                <span class="material-icons icon">bookmark_border</span>
+                <mat-label class="label">Saved</mat-label>
+            </div>
+            <div mat-menu-item routerLink="/editUser">
+                <span class="material-icons icon">settings</span>
+                <mat-label class="label">Settings</mat-label>
+            </div>
+            <div mat-menu-item routerLink="/verifyAccount">
+                <span class="material-icons icon">verified_user</span>
+                <mat-label class="label">Verify Account</mat-label>
+            </div>
+            <mat-divider></mat-divider>
+            <div mat-menu-item>
+                <mat-label class="label">Log out</mat-label>
+            </div>
+        </mat-menu>
+    </span>
+
+</nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

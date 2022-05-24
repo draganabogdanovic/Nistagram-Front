@@ -1,0 +1,260 @@
+<div *ngIf="userProfileInfo" class="user-profile-info">
+    <div class="profile-picture-container" (click)="openCurrentStories()">
+        <img *ngIf="!userProfileInfo.profile_picture" class="profile-picture"
+            src="http://localhost:8080/api/media/storage/static/default_pfp.jpg"
+            [ngClass]="{'has-stories' : stories != null}">
+        <img *ngIf="userProfileInfo.profile_picture" class="profile-picture"
+            src="http://localhost:8080/api/media{{userProfileInfo.profile_picture}}"
+            [ngClass]="{'has-stories' : stories != null}">
+    </div>
+    <div class="info" *ngIf="userProfileInfo">
+        <div class="username">
+            {{userProfileInfo.username}}
+        </div>
+        <div class="counts">
+            <div class="count">
+                <span *ngIf="posts != null"><span class="bold">{{posts.length}}</span>&nbsp;<span
+                        class="label">posts</span></span>
+                <span *ngIf="posts == null"><span class="bold">0</span>&nbsp;<span class="label">posts</span></span>
+                <span class="bold">{{userProfileInfo.followers_count}}</span>&nbsp;<span class="label">followers</span>
+                <span class="bold">{{userProfileInfo.following_count}}</span>&nbsp;<span class="label">following</span>
+            </div>
+        </div>
+        <div class="text">
+            <div class="name">
+                {{userProfileInfo.name}}
+            </div>
+            <div class="bio">
+                <span *ngIf="userProfileInfo.bio != null">{{userProfileInfo.bio}}</span>
+            </div>
+            <div class="website">
+                <span>{{userProfileInfo.website}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="highlights-container" *ngIf="highlights">
+        <div class="highlights">
+            <div class="highlight" *ngFor="let pair of transformHighlights()">
+                <div (click)="openHighlight(pair.highlights)">
+                    <img *ngIf="!isContentVideo(pair.highlights[0].story.content[0])" class="highlight-picture"
+                        src="http://localhost:8080/api/media{{pair.highlights[0].story.content[0]}}">
+                    <video *ngIf="isContentVideo(pair.highlights[0].story.content[0])" class="highlight-picture"
+                        src="http://localhost:8080/api/media{{pair.highlights[0].story.content[0]}}"></video>
+                    <div class="highlight-name">{{pair.highlight_name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-tab-group mat-align-tabs="center" animationDuration="0ms" (selectedTabChange)="tabChanged($event)"
+        class="tabs">
+        <mat-tab label="Posts">
+            <mat-grid-list cols="3">
+                <div *ngFor="let post of posts">
+                    <mat-grid-tile style="width: 100%;">
+                        <div class="image-container" (click)="openPost(post)"
+                            (contextmenu)="openSavePostDialog($event, post)">
+                            <img *ngIf="!isContentVideo(post.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{post.content[0]}}">
+                            <video *ngIf="isContentVideo(post.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{post.content[0]}}"></video>
+                            <span *ngIf="post.content.length > 1"
+                                class="multiple-images-icon material-icons">perm_media</span>
+                            <div class="overlay">
+                                <i class="fas fa-heart icon"></i>
+                                <div class="value">
+                                    {{post.number_of_likes}}
+                                </div>
+                                <i class="fas fa-heart-broken icon"></i>
+                                <div class="value">
+                                    {{post.number_of_dislikes}}
+                                </div>
+                                <i class="fas fa-comment icon"></i>
+                                <div class="value">
+                                    {{post.number_of_comments}}
+                                </div>
+                            </div>
+                        </div>
+                    </mat-grid-tile>
+                </div>
+            </mat-grid-list>
+        </mat-tab>
+        <mat-tab label="Liked posts">
+            <mat-grid-list cols="3">
+                <div *ngFor="let post of liked_posts">
+                    <mat-grid-tile style="width: 100%;">
+                        <div class="image-container" (click)="openPost(post)">
+                            <img *ngIf="!isContentVideo(post.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{post.content[0]}}">
+                            <video *ngIf="isContentVideo(post.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{post.content[0]}}"></video>
+                            <span *ngIf="post.content.length > 1"
+                                class="multiple-images-icon material-icons">perm_media</span>
+                            <div class="overlay">
+                                <i class="fas fa-heart icon"></i>
+                                <div class="value">
+                                    {{post.number_of_likes}}
+                                </div>
+                                <i class="fas fa-heart-broken icon"></i>
+                                <div class="value">
+                                    {{post.number_of_dislikes}}
+                                </div>
+                                <i class="fas fa-comment icon"></i>
+                                <div class="value">
+                                    {{post.number_of_comments}}
+                                </div>
+                            </div>
+                        </div>
+                    </mat-grid-tile>
+                </div>
+            </mat-grid-list>
+        </mat-tab>
+        <mat-tab label="Disliked posts">
+            <mat-grid-list cols="3">
+                <div *ngFor="let post of disliked_posts">
+                    <mat-grid-tile style="width: 100%;">
+                        <div class="image-container" (click)="openPost(post)">
+                            <img *ngIf="!isContentVideo(post.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{post.content[0]}}">
+                            <video *ngIf="isContentVideo(post.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{post.content[0]}}"></video>
+                            <span *ngIf="post.content.length > 1"
+                                class="multiple-images-icon material-icons">perm_media</span>
+                            <div class="overlay">
+                                <i class="fas fa-heart icon"></i>
+                                <div class="value">
+                                    {{post.number_of_likes}}
+                                </div>
+                                <i class="fas fa-heart-broken icon"></i>
+                                <div class="value">
+                                    {{post.number_of_dislikes}}
+                                </div>
+                                <i class="fas fa-comment icon"></i>
+                                <div class="value">
+                                    {{post.number_of_comments}}
+                                </div>
+                            </div>
+                        </div>
+                    </mat-grid-tile>
+                </div>
+            </mat-grid-list>
+        </mat-tab>
+        <mat-tab label="Saved">
+            <div *ngIf="savedPosts">
+                <div *ngFor="let pair of transformSavedPosts()">
+                    <div class="collection-name">{{pair.collection_name}}</div>
+                    <br />
+                    <mat-grid-list cols="3">
+                        <div *ngFor="let post of pair.posts">
+                            <mat-grid-tile style="width: 100%;">
+                                <div class="image-container" (click)="openPost(post.post)"
+                                    (contextmenu)="openSavePostDialog($event, post.post)">
+                                    <img *ngIf="!isContentVideo(post.post.content[0])" class="image"
+                                        src="http://localhost:8080/api/media{{post.post.content[0]}}">
+                                    <video *ngIf="isContentVideo(post.post.content[0])" class="image"
+                                        src="http://localhost:8080/api/media{{post.post.content[0]}}"></video>
+                                    <span *ngIf="post.post.content.length > 1"
+                                        class="multiple-images-icon material-icons">perm_media</span>
+                                    <div class="overlay">
+                                        <i class="fas fa-heart icon"></i>
+                                        <div class="value">
+                                            {{post.post.number_of_likes}}
+                                        </div>
+                                        <i class="fas fa-heart-broken icon"></i>
+                                        <div class="value">
+                                            {{post.post.number_of_dislikes}}
+                                        </div>
+                                        <i class="fas fa-comment icon"></i>
+                                        <div class="value">
+                                            {{post.post.number_of_comments}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-grid-tile>
+                        </div>
+                    </mat-grid-list>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Stories">
+            <mat-grid-list cols="3">
+                <div *ngFor="let story of allStories">
+                    <mat-grid-tile style="width: 100%;">
+                        <div class="image-container" (click)="openStory(story)"
+                            (contextmenu)="openHighlightDialog($event, story)">
+                            <img *ngIf="!isContentVideo(story.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{story.content[0]}}">
+                            <video *ngIf="isContentVideo(story.content[0])" class="image"
+                                src="http://localhost:8080/api/media{{story.content[0]}}"></video>
+                            <span *ngIf="story.content.length > 1"
+                                class="multiple-images-icon material-icons">perm_media</span>
+                        </div>
+                    </mat-grid-tile>
+                </div>
+            </mat-grid-list>
+        </mat-tab>
+        <mat-tab label="Upload Post">
+            <form [formGroup]="postUploadForm" (ngSubmit)="onSubmitPost()" style="margin-top: 10px;">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Select images</mat-label>
+                        <ngx-mat-file-input (change)="onFileSelectPost($event)" formControlName="media"
+                            accept="video/*, image/*" multiple>
+                        </ngx-mat-file-input>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Tags</mat-label>
+                        <mat-chip-list #chipList>
+                            <mat-chip *ngFor="let tag of tags" [selectable]="true" [removable]="true"
+                                (removed)="removeTag(tag)">
+                                {{tag}}
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Press Enter to confirm" #tagInput [formControl]="tagCtrl"
+                                [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="addTag($event)">
+                        </mat-chip-list>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Location</mat-label>
+                        <input type="text" placeholder="Enter location" matInput [formControl]="locationSearch"
+                            [matAutocomplete]="auto" (keyup)="getLocations()">
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let location of locations"
+                                (onSelectionChange)="updateLocation(location)" [value]="location.city">
+                                {{location.city}}, {{location.country}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button type="submit" style="margin-bottom: 1px;">Upload</button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Upload Story">
+            <form [formGroup]="storyUploadForm" (ngSubmit)="onSubmitStory()" style="margin-top: 10px;">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Select images</mat-label>
+                        <ngx-mat-file-input (change)="onFileSelectStory($event)" formControlName="media" multiple>
+                        </ngx-mat-file-input>
+                    </mat-form-field>
+                    <div class="close-friends-checkbox-container">
+                        <mat-checkbox formControlName="closeFriendsOnly">Close friends only</mat-checkbox>
+                    </div>
+                </div>
+                <button mat-raised-button type="submit" style="margin-bottom: 1px;">Upload</button>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,0 +1,92 @@
+<div class="container" *ngIf="user">
+  <div class="profile-picture-container" (click)="openDialog()">
+    <img *ngIf="!user.profile_picture" class="profile-picture"
+      src="http://localhost:8080/api/media/storage/static/default_pfp.jpg">
+    <img *ngIf="user.profile_picture" class="profile-picture"
+      src="http://localhost:8080/api/media{{user.profile_picture}}">
+    <div class="overlay">
+      <i class="fas fa-edit icon"></i>
+    </div>
+  </div>
+  <form [formGroup]="profilePictureUploadForm" (ngSubmit)="onSubmit()" style="margin-top: 10px;">
+    <div>
+      <mat-form-field>
+        <ngx-mat-file-input class="file" id="profile-picture-input" (change)="onFileSelect($event)"
+          formControlName="media" accept="image/*">
+        </ngx-mat-file-input>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button type="submit" style="margin-bottom: 1px;">Upload</button>
+  </form>
+  <form action="action_page.php">
+    <div class="row">
+      <div class="col-25">
+        <label for="name">Name</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="name" name="name" [(ngModel)]="user.name" placeholder="name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="username">Username</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="website">Website</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="website" name="website" [(ngModel)]="user.website" placeholder="website">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="biography">Biography</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="bio" name="bio" [(ngModel)]="user.bio" placeholder="Write something.."
+          style="height:100px">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="email">Email</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="email" name="email" [(ngModel)]="user.email" placeholder="email">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="phone_number">Phone Number</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="phone_number" name="phone_number" [(ngModel)]="user.phone_number">
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-25">
+        <input type="radio" name="gender" [value]="false" id="dot-1">
+        <input type="radio" name="gender" [value]="true" [(ngModel)]="user.gender" id="dot-2">
+        <input type="radio" name="gender" [value]="false" [(ngModel)]="user.gender" id="dot-3">
+        <label for="gender">Gender</label>
+        <div class="category">
+          <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender"> Male </span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender"> Female </span>
+          </label>
+        </div>
+      </div>
+      <div class="submit-btn">
+        <button mat-stroked-button (click)="save()" color="primary" class="submit-btn" type="submit">
+          Save changes</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,31 @@
+<div class="wrapper">
+    <div class="header">
+        <div class="top" style="background-color: rgb(229, 241, 241);">
+            <div class="logo">
+                <h3>Nishtagram</h3>
+            </div>
+            <div class="form">
+                <form (submit)="onSubmit()">
+                    <div class="form-par">
+                        <input matInput type="text" placeholder="Username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <input matInput type="password" placeholder="Password" [(ngModel)]="password"
+                        [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="submit-btn">
+                        <button mat-stroked-button color="primary" class="submit-btn" type="submit">
+                            Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="signup" style="background-color: rgb(229, 241, 241);">
+            <p>Don't have an account? <a href="#" routerLink = "/registration">Sign up</a></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<nav class="navigation">
+    <img class="logo" src="http://localhost:8080/api/media/storage/static/logo.png">
+</nav>
+<!-- <div class="wrapper">
+    <div class="header">
+        <div class="top" style="background-color: rgb(229, 241, 241);">
+            <div class="form">
+                <form (submit)="onSubmit()">
+                    <div class="form-par">
+                        <label for="name">Enter your name</label>
+                        <input matInput type="text" name="name" placeholder="Name" [(ngModel)]="verReq.name" [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <label for="surname">Enter your surname</label>
+                        <input matInput type="text" placeholder="Surname" [(ngModel)]="verReq.surname"
+                        [ngModelOptions]="{standalone: true}" required>
+                    </div>
+                    <div class="form-par">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your category</mat-label>
+                            <mat-select [(ngModel)]="verReq.verificationCategory"
+                            [ngModelOptions]="{standalone: true}">
+                              <mat-option value="influencer">Influencer</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                    <div>
+                        <input type="file">
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="submit-btn">
+                        <button mat-stroked-button color="primary" class="submit-btn" type="submit">
+                            Send</button>
+                    </div>
+                </form>
+            </div>
+            <div class="or">
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<form [formGroup]="verificationReqForm" (ngSubmit)="onSubmit()">
+    <div>
+        <mat-form-field>
+            <mat-label>Enter Name</mat-label>
+            <input matInput type="text" id="name" formControlName="name">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Enter Surname</mat-label>
+            <input matInput type="text" name="surname" id="surname" formControlName="surname">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter category</mat-label>
+            <select matNativeControl required formControlName="category">
+              <option value="0">NEWS_MEDIA</option>
+              <option value="1">SPORTS</option>
+              <option value="2">GOVERNMENT_POLITICS</option>
+              <option value="3">MUSIC</option>
+              <option value="4">FASHION</option>
+              <option value="5">ENTERTAINMENT</option>
+              <option value="6">BLOGGER_INFLUENCER</option>
+              <option value="7">BUSINESS_BRAND_ORGANIZATION</option>
+              <option value="8">OTHER</option>
+            </select>
+          </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Select image</mat-label>
+            <ngx-mat-file-input (change)="onFileSelect($event)" formControlName="media">
+            </ngx-mat-file-input>
+        </mat-form-field>
+    </div>
+    <button class="submit_b" mat-raised-button type="submit">SEND</button>
+</form>

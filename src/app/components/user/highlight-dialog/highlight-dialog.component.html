@@ -1,0 +1,17 @@
+<div class="dialog">
+    <mat-form-field>
+        <mat-label>Highlight name</mat-label>
+        <input matInput [(ngModel)]="highlightName">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Existing highlights</mat-label>
+        <mat-select [(ngModel)]="highlightName">
+            <mat-option *ngFor="let name of highlightNames" [value]="name">
+                {{name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div>
+        <button mat-raised-button (click)="highlight()">Highlight</button>
+    </div>
+</div>

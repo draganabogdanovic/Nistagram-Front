@@ -1,0 +1,55 @@
+<div class="post-dialog-container">
+    <div class="left-container">
+        <owl-carousel class="carousel" [options]="options" style="width: 100% !important;" class="owl-theme carousel">
+            <div *ngFor="let content of data.post.content">
+                <img *ngIf="!isContentVideo(content)" class="content" src="http://localhost:8080/api/media{{content}}">
+                <video *ngIf="isContentVideo(content)" class="content" src="http://localhost:8080/api/media{{content}}"></video>
+            </div>
+        </owl-carousel>
+    </div>
+    <div class="right-container">
+        <div class="report" (click)="report()">
+            <i class="fas fa-exclamation-circle"></i>
+        </div>
+        <div class="header">
+            <div style="padding: 20px; display: inline-block;">
+                <div class="username">{{data.post.username}}</div>
+                <div class="location" *ngIf="data.post.location.city && data.post.location.country">
+                    {{data.post.location.city}}, {{data.post.location.country}}</div>
+            </div>
+        </div>
+        <div class="comments">
+            <div class="comment" *ngIf="data.post.description">
+                <span class="username">{{data.post.username}}</span>
+                <span class="comment-text">{{data.post.description}}</span>
+            </div>
+            <div *ngFor="let comment of comments">
+                <div class="comment">
+                    <span class="username">{{comment.username}}</span>
+                    <span class="comment-text">{{comment.content}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <span (click)="review(1)">
+                <i class="fas fa-heart icon" id="like-icon" [ngClass]="{'reviewed' : data.post.review_status == 1}"></i>
+            </span>
+            <span (click)="review(0)">
+                <i class="fas fa-heart-broken icon" id="dislike-icon" [ngClass]="{'reviewed' : data.post.review_status == 0}"></i>
+            </span>
+            <span (click)="focusComment()">
+                <i class="fas fa-comment icon"></i>
+            </span>
+            <div class="value" *ngIf="data.post.number_of_likes == 1">{{data.post.number_of_likes}} like</div>
+            <div class="value" *ngIf="data.post.number_of_likes != 1">{{data.post.number_of_likes}} likes</div>
+            <div class="value" *ngIf="data.post.number_of_dislikes == 1">{{data.post.number_of_dislikes}} dislike</div>
+            <div class="value" *ngIf="data.post.number_of_dislikes != 1">{{data.post.number_of_dislikes}} dislikes</div>
+        </div>
+        <div class="post-comment">
+            <textarea id="comment-textarea" class="comment-textarea" matInput type="text" [(ngModel)]="commentText"
+                placeholder="Add a comment..."></textarea>
+            <button class="comment-button" mat-flat-button [disabled]="!commentText"
+                (click)="postComment()">Post</button>
+        </div>
+    </div>
+</div>
